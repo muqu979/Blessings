@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>长辈祝福卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .card-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #f8f9fa;
+    }
+
+    .card {
+      position: absolute;
+      padding: 10px 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      font-family: "PingFang SC", "Helvetica Neue", sans-serif;
+      white-space: nowrap;
+      animation: fadeIn 0.6s ease-in;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-pink {
+      background-color: rgba(255, 220, 230, 0.9);
+    }
+    .card-blue {
+      background-color: rgba(220, 240, 255, 0.9);
+    }
+    .card-yellow {
+      background-color: rgba(255, 245, 220, 0.9);
+    }
+    .card-green {
+      background-color: rgba(220, 255, 220, 0.9);
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container"></div>
+  <script>
+    const blessings = [
+      "好好学习，争取考上深圳大学呀",
+      "天天进步，长辈为你骄傲",
+      "按时吃饭，身体是奋斗的本钱",
+      "遇到难题别慌，慢慢想总会解决",
+      "深圳大学是好地方，努力去闯闯",
+      "做人要踏实，做事要认真",
+      "别总看手机，多看看书",
+      "早睡早起，精神好才能学得多",
+      "考不考得上都没关系，尽力就好",
+      "长辈盼着你考上深圳大学，光宗耀祖",
+      "待人要真诚，朋友会越来越多",
+      "遇到挫折别灰心，从头再来就好",
+      "深圳大学的校门为你敞开，加油",
+      "多帮家里做家务，懂事的孩子最可爱",
+      "读书不是唯一出路，但努力一定有回报",
+      "天冷加衣，别让长辈担心",
+      "你比小时候更懂事了，继续加油",
+      "目标定在深圳大学，一步一步靠近",
+      "别挑食，啥都吃才能长高高",
+      "遇到不懂的就问，没人会笑话你",
+      "深圳大学的学长学姐都很优秀，你也可以",
+      "每天进步一点点，一年就是一大步",
+      "长辈不求你多厉害，平安健康就好",
+      "写作业别拖拉，做完就能安心玩",
+      "考上深圳大学，咱们全家都高兴",
+      "对老师要尊敬，他们教你不容易",
+      "和同学好好相处，互相帮助",
+      "遇到困难告诉长辈，我们一起想办法",
+      "深圳大学在等你，再加把劲",
+      "少发脾气，平和的心态能做好更多事",
+      "记得给家里打电话，长辈想知道你好不好",
+      "考试别紧张，正常发挥就好",
+      "深圳大学的图书馆可大了，去了要多看书",
+      "自己的事情自己做，慢慢学会独立",
+      "努力过就不后悔，长辈永远支持你",
+      "有空多运动，身体好比啥都强",
+      "深圳大学的校园很美，考上了去逛逛",
+      "别太在意别人的看法，做好自己最重要",
+      "长辈年轻时没这条件，你要珍惜机会",
+      "朝着深圳大学的方向跑，别停下",
+      "犯了错没关系，改了就是好孩子",
+      "每天都要开开心心，心情好比啥都强",
+      "深圳大学在向你招手呢，再努努力",
+      "读书累了就休息，别硬撑",
+      "你是家里的希望，我们都信你",
+      "考上深圳大学，给弟弟妹妹做榜样",
+      "待人接物要礼貌，走到哪都受欢迎",
+      "别熬夜玩游戏，影响学习又伤身体",
+      "深圳大学的通知书，等着你去拿",
+      "不管结果怎样，你都是长辈的好孩子"
+    ];
+
+    const cardColors = ["pink", "blue", "yellow", "green"];
+    const container = document.querySelector(".card-container");
+    let zIndex = 1;
+
+
+    function createBlessingCard() {
+      const card = document.createElement("div");
+      const randomColor = cardColors[Math.floor(Math.random() * cardColors.length)];
+      card.className = `card card-${randomColor}`;
+      
+      const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+      card.innerHTML = `🌟 ${randomBlessing}`;
+      
+      const maxTop = window.innerHeight - 80;
+      const maxLeft = window.innerWidth - 220;
+      card.style.top = `${Math.floor(Math.random() * maxTop)}px`;
+      card.style.left = `${Math.floor(Math.random() * maxLeft)}px`;
+      card.style.zIndex = zIndex++;
+      
+      container.appendChild(card);
+      
+      setTimeout(() => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(-10px)";
+        setTimeout(() => container.removeChild(card), 500);
+      }, 5000);
+    }
+
+
+    window.onload = function() {
+      for (let i = 0; i < 10; i++) {
+        createBlessingCard();
+      }
+    };
+
+    setInterval(createBlessingCard, 200);
+</script>
+</body>
+</html>
